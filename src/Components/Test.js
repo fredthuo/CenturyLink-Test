@@ -62,28 +62,30 @@ render() {
         </form>
 
         <form onSubmit={this.handleSubmit}>
-            <button onClick={event => this.setState({ Id: this.state.data.Id})} type="submit">View Followers Info</button>
+            <button onClick={event => this.setState({ Id: this.state.data.Id})} type="submit">View Followers</button>
         </form>
 
         {JSON.stringify(this.state.data)}
+        <h3>Followers</h3>
         {JSON.stringify(this.state.followers.fill(1,5))}
-
-        <form onSubmit={this.getFollowersInfo}>
-            <button onClick={event => this.setState({ Id: this.state.followers.id})} type="submit">View Followers Info</button>
-        </form>
-
-        {JSON.stringify(this.state.data)}
-        {JSON.stringify(this.state.followers.fill(1,5))}
-
-        <form onSubmit={this.getFollowersInfo}>
-            <button onClick={event => this.setState({ Id: this.state.followers.id})} type="submit">View Followers Info</button>
-        </form>
-
-        {JSON.stringify(this.state.data)}
-        {JSON.stringify(this.state.followers.fill(1,5))}
-
-        </React.Fragment>
+        {JSON.stringify(this.state.followers.followers_url)}
         
+        <h3>Followers followers</h3>
+        {this.state.followers.map((event, key) => {
+            return (
+                <div key={key}>
+                <form onSubmit={this.handleSubmit}>
+                    <button onClick={event => this.setState({ followers_url: this.state.data.followers_url})} type="submit">View Followers</button>
+                </form> 
+                               {event.followers_url}
+                               {JSON.stringify(this.state.data)}
+                               {JSON.stringify(this.state.followers.fill(1,5))}
+                </div>
+                
+            )
+        })
+        }
+        </React.Fragment>
     )
 }
 }
